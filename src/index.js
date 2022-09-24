@@ -47,7 +47,7 @@ async function mountData(searchValue) {
       data.hits.forEach(photo => {
           createCardMurkup(photo);
       });
-    } catch (error) {
+    }catch (error) {
         console.log(error);
     }
 };

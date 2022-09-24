@@ -1,6 +1,5 @@
 import axios from "axios";
-import Notiflix from 'notiflix';
-import { itemPerPage } from "../index";
+import Notiflix from 'notiflix'; 
 
 export const itemPerPage = 40;
 const API_KEY = '30113359-9203b77dea58835ce987d2f5f';

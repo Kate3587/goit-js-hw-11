@@ -73,11 +73,11 @@ button{
     overflow: hidden;
 }
 
-.gallery {
+/* .gallery {
     display: flex;
     gap: 10px;
 }
 .photo-card {
     width: 100px;
     height: 100px;
-}
+} */
