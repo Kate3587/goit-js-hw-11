@@ -16,7 +16,7 @@ export async function getPhoto(search, page) {
     try
     {
         if (!search.trim()) {
-            console.log('no arg!');
+            Notiflix.Notify.failure('Please enter data');
             return;
         }
 
