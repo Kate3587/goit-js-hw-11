@@ -43,13 +43,13 @@ async function mountData(searchValue) {
         moreBtn.addEventListener('click', () => {loadMorePhoto(searchValue)} );
         if (data.hits.length === 0) {
             Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-        }
+        };
       data.hits.forEach(photo => {
           createCardMurkup(photo);
       });
     }catch (error) {
         console.log(error);
-    }
+    };
 };
 
 function createCardMurkup({ webformatURL, largeImageURL, tags, likes, views, comments, downloads}) {
