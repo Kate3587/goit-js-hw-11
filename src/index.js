@@ -23,7 +23,6 @@ async function loadMorePhoto(searchValue) {
     if (page === totalPages) {
         moreBtn.classList.add('visually-hidden');
     }
-
 };
 
 function onSubmit(event) {
@@ -33,8 +32,6 @@ function onSubmit(event) {
     const searchValue = event.currentTarget[0].value;
     mountData(searchValue);
 }
-
-mountData();
 
 async function mountData(searchValue) {
     try {
