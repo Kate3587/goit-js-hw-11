@@ -50,7 +50,7 @@ function listenerCallback() {
 
 function createGalleryMarkup(cardsArr) {
   const markUp = cardsArr.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => `<div class="photo-card">
-  <a class="link-img" href=${largeImageURL}><img class="card-img" src=${webformatURL} alt=${tags} loading="lazy" /></a>
+  <a class="link-img photo-card" href=${largeImageURL}><img class="card-img" src=${webformatURL} alt=${tags} loading="lazy" /></a>
   <div class="info">
     <p class="info-item">
       <b class="info-item-label">Likes: </b><span class="info-item-span">${likes}</span>
@@ -79,7 +79,7 @@ function createGalleryMarkup(cardsArr) {
      if (searchValue === '') {
        Notiflix.Notify.info('Write something.')
      }
-    mountData(searchValue);
+     mountData(searchValue);
 }
 
   function createLightbox() {
