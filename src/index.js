@@ -37,7 +37,7 @@ async function loadMorePhoto(searchValue) {
         Notiflix.Notify.info(`Hooray! We found ${data.totalHits} images.`);
       }
       createGalleryMarkup(data.hits);
-        createLightbox();
+    
     } catch (error) {
       addClass('visually-hidden');
       console.log(error);
@@ -68,6 +68,7 @@ function createGalleryMarkup(cardsArr) {
 </div>`).join('');
   
   galleryEl.insertAdjacentHTML('beforeend', markUp);
+   createLightbox();
 }
 
    function onSubmit (event) {
