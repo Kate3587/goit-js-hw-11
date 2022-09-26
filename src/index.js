@@ -68,7 +68,7 @@ function createGalleryMarkup(cardsArr) {
 </div>`).join('');
   
   galleryEl.insertAdjacentHTML('beforeend', markUp);
-   createLightbox();
+  new SimpleLightbox('.photo-card a', { captionDelay: 300 })
 }
 
    function onSubmit (event) {
@@ -82,18 +82,6 @@ function createGalleryMarkup(cardsArr) {
      }
      mountData(searchValue);
 }
-
-  function createLightbox() {
-    const linkImg = document.querySelector('.link-img');
-    linkImg.addEventListener('click', openModal);
-
-    function openModal(event) {
-      event.preventDefault();
-    }
-
-    let lightbox = new SimpleLightbox('.photo-card a', { captionDelay: 300 })
-  }
-
 
 function removeMarkup(element) {
     element.innerHTML = '';
