@@ -12,10 +12,11 @@ const moreBtn = document.querySelector('.load-more')
 let page = 1;
 let searchValue = '';
 const totalPages = Math.ceil(500 / itemPerPage);
+let lightbox = new SimpleLightbox('.photo-card a', { captionDelay: 300 });
 
 formEl.addEventListener('submit', onSubmit);
 
-async function loadMorePhoto(searchValue) {
+async function loadMorePhoto() {
   page += 1;
   const data = await getPhoto(searchValue, page);
   createGalleryMarkup(data.hits);
@@ -24,29 +25,29 @@ async function loadMorePhoto(searchValue) {
     addClass('visually-hidden');
   };
 }
+
   async function mountData(searchValue) {
     try {
       const data = await getPhoto(searchValue, page);
-      removeClass('visually-hidden');
-      moreBtn.removeEventListener('click', listenerCallback)
-      moreBtn.addEventListener('click', listenerCallback)
+      
+      removeClass('visually-hidden') 
+      moreBtn.addEventListener('click', loadMorePhoto);
       
       if (data.hits.length === 0) {
         Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
       } else {
         Notiflix.Notify.info(`Hooray! We found ${data.totalHits} images.`);
       }
+      
       createGalleryMarkup(data.hits);
+       
     
     } catch (error) {
       addClass('visually-hidden');
-      console.log(error);
+      Notiflix.Notify.failure('Ooops, Error!');
     };
 };
-  
-function listenerCallback() {
-  loadMorePhoto(searchValue);
-}
+
 
 function createGalleryMarkup(cardsArr) {
   const markUp = cardsArr.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => `<div class="photo-card">
@@ -68,17 +69,19 @@ function createGalleryMarkup(cardsArr) {
 </div>`).join('');
   
   galleryEl.insertAdjacentHTML('beforeend', markUp);
-  new SimpleLightbox('.photo-card a', { captionDelay: 300 })
+  lightbox.refresh();
 }
 
    function onSubmit (event) {
     event.preventDefault();
-    removeMarkup(galleryEl);
-
-     searchValue = event.currentTarget[0].value;
+     removeMarkup(galleryEl);
      
-     if (searchValue === '') {
-       Notiflix.Notify.info('Write something.')
+     searchValue = event.currentTarget.elements.searchQuery.value;
+     console.dir(searchValue);
+
+     if (!searchValue.trim()) {
+            Notiflix.Notify.failure('Write something.');
+            return;
      }
      mountData(searchValue);
 }
